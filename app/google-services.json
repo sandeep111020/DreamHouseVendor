@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "402623880605",
+    "project_id": "dreamhouse-ec52d",
+    "storage_bucket": "dreamhouse-ec52d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402623880605:android:ff27852885661c53782374",
+        "android_client_info": {
+          "package_name": "com.example.dreamhousevendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402623880605-4rott80i1dv402f8p815lh7bd5dfidv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dreamhousevendor",
+            "certificate_hash": "293197436b8df8d90f0ea914601303e268480132"
+          }
+        },
+        {
+          "client_id": "402623880605-5iq1igj8ep2pvi67hnlgnmergj1bos8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2TciMmAfmNBjtb3ejhLxtYeJRmjVmV60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402623880605-5iq1igj8ep2pvi67hnlgnmergj1bos8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
