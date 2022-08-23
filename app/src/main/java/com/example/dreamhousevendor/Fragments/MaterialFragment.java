@@ -1,7 +1,9 @@
 package com.example.dreamhousevendor.Fragments;
 
 import android.appwidget.AppWidgetHost;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +46,7 @@ public class MaterialFragment extends Fragment {
     private MaterialFragment materialViewModel;
     private RecyclerView recyclerView;
     private MaterialAdapter adapter1;
+    private String number;
 
     public MaterialFragment() {
         // Required empty public constructor
@@ -60,12 +64,21 @@ public class MaterialFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        SharedPreferences sh1 = getContext().getSharedPreferences("MySharedPref", Context.MODE_MULTI_PROCESS);
+
+// The value will be default as empty string because for
+// the very first time when the app is opened, there is nothing to show
+        number = sh1.getString("mobilenumber", "");
+        SharedPreferences sh = getContext().getSharedPreferences("MySharedPref", Context.MODE_MULTI_PROCESS);
+
+        String s1 = sh.getString("projectid", "");
+        Toast.makeText(getContext(),s1+"hi",Toast.LENGTH_SHORT).show();
+
         FirebaseRecyclerOptions<MaterialModel> options =
                 new FirebaseRecyclerOptions.Builder<MaterialModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Projectsvendor").child(currentuser).child(currentuser+"My Project").child("Material"), MaterialModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Projectsvendor").child(number).child(s1).child("Material"), MaterialModel.class)
                         .build();
 
-        // .child("24052021130648")
         adapter1 = new MaterialAdapter(options,getActivity());
         recyclerView.setAdapter(adapter1);
         adapter1.startListening();
@@ -79,17 +92,7 @@ public class MaterialFragment extends Fragment {
 
         showTableLayout();
 
-        //SET PROP
-//        tableView.setHeaderBackgroundColor(Color.parseColor("#2ecc71"));
-//        tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(getContext(),spaceProbeHeaders));
-//        tableView.setColumnCount(4);
-//        tableView.setDataAdapter(new SimpleTableDataAdapter(getActivity(), spaceProbes));
-//        tableView.addDataClickListener(new TableDataClickListener() {
-//            @Override
-//            public void onDataClicked(int rowIndex, Object clickedData) {
-//                Toast.makeText(getActivity(), ((String[])clickedData)[1], Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
         return root;
     }
     public  void showTableLayout() {

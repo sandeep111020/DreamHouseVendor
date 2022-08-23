@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DreamHouseVendor">
         <activity
+            android:name=".ProjectProfileScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ProjectAddScreen"
+            android:exported="false" />
+        <activity
             android:name=".MyHistory"
             android:exported="false" />
         <activity

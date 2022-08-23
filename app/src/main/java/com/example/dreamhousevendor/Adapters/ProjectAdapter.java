@@ -1,7 +1,10 @@
 package com.example.dreamhousevendor.Adapters;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +46,14 @@ public class ProjectAdapter extends FirebaseRecyclerAdapter<Newprojectmodel, Pro
         holder.taskdetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+                myEdit.putString("projectid", model.getEmpid());
+
+
+                myEdit.commit();
                 Intent i = new Intent(context, ProjectUpdate.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);

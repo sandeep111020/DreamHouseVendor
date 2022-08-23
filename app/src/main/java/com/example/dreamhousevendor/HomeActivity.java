@@ -1,10 +1,13 @@
 package com.example.dreamhousevendor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +15,17 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dreamhousevendor.Adapters.ProjectAdapter;
 import com.example.dreamhousevendor.Models.Newprojectmodel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -29,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     private ProjectAdapter adapter1;
     private String currentuser;
     Button add;
+    String ss="";
 
 
     @Override
@@ -41,18 +50,35 @@ public class HomeActivity extends AppCompatActivity {
 
         currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        //Toast.makeText(HomeActivity.this,currentuser,Toast.LENGTH_SHORT).show();
+        // Storing data into SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+        myEdit.putString("mobilenumber", "823293629");
+
+        myEdit.commit();
+        SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_MULTI_PROCESS);
+
+// The value will be default as empty string because for
+// the very first time when the app is opened, there is nothing to show
+        ss = sh.getString("mobilenumber", "");
+
         recyclerView=findViewById(R.id.recycler_menu);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i= new Intent(HomeActivity.this,VendorItemUpload.class);
+//                Intent i= new Intent(HomeActivity.this,VendorItemUpload.class);
+//                startActivity(i);
+                Intent i= new Intent(HomeActivity.this,ProjectAddScreen.class);
                 startActivity(i);
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<Newprojectmodel> options =
                 new FirebaseRecyclerOptions.Builder<Newprojectmodel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Projectsvendor").child(currentuser), Newprojectmodel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Projectsvendor").child(ss), Newprojectmodel.class)
                         .build();
 
         // .child("24052021130648")
