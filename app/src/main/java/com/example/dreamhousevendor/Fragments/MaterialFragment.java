@@ -31,19 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MaterialFragment extends Fragment {
 
-    static String[][] spaceProbes={
-            {"1","Pioneer","Chemical","Jupiter"},
-            {"2","Voyager","Plasma","Andromeda"},
-            {"3","Casini","Solar","Saturn"},
-            {"4","Spitzer","Anti-Matter","Andromeda"},
-            {"5","Apollo","Chemical","Moon"},
-            {"6","Curiosity","Solar","Mars"},
 
-    };
     TableLayout tableView;
     Button add;
-    static String[] spaceProbeHeaders={"No","Name","Propellant","Destination"};
-    private MaterialFragment materialViewModel;
+
     private RecyclerView recyclerView;
     private MaterialAdapter adapter1;
     private String number;
@@ -58,7 +49,7 @@ public class MaterialFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_material, container, false);
-         tableView= (TableLayout) root.findViewById(R.id.tableView);
+       //  tableView= (TableLayout) root.findViewById(R.id.tableView);
          add= root.findViewById(R.id.addmaterial);
         recyclerView=root.findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -90,7 +81,7 @@ public class MaterialFragment extends Fragment {
              }
          });
 
-        showTableLayout();
+       // showTableLayout();
 
 
         return root;

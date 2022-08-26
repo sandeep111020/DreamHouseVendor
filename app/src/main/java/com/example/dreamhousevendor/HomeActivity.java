@@ -69,10 +69,10 @@ public class HomeActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i= new Intent(HomeActivity.this,VendorItemUpload.class);
-//                startActivity(i);
-                Intent i= new Intent(HomeActivity.this,ProjectAddScreen.class);
+                Intent i= new Intent(HomeActivity.this,VendorItemUpload.class);
                 startActivity(i);
+//                Intent i= new Intent(HomeActivity.this,ProjectAddScreen.class);
+//                startActivity(i);
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
